@@ -7,6 +7,7 @@
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
     <!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+    <AssemblyName>ididit!</AssemblyName>
     <OutputType>Exe</OutputType>
     <RootNamespace>Ididit.WebView.Maui</RootNamespace>
     <UseMaui>true</UseMaui>
@@ -18,12 +19,17 @@
     <ApplicationTitle>ididit!</ApplicationTitle>
 
     <!-- App Identifier -->
-    <ApplicationId>today.ididit</ApplicationId>
+    <ApplicationId>com.jinjinov.ididit</ApplicationId>
     <ApplicationIdGuid>592BD410-43DE-4A14-BDBC-B5FC9E6AD8E4</ApplicationIdGuid>
 
     <!-- Versions -->
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-    <ApplicationVersion>1</ApplicationVersion>
+    <!--
+    if ApplicationDisplayVersion != 1.0
+    Assets file 'project.assets.json' doesn't have a target for 'net7.0-windows10.0.19041.0'. 
+    Ensure that restore has run and that you have included 'net7.0-windows10.0.19041.0' in the TargetFrameworks for your project.
+    -->
+    <ApplicationVersion>4</ApplicationVersion>
 
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
@@ -42,15 +48,73 @@
 
   <ItemGroup>
     <!-- App Icon -->
-    <MauiIcon Include="Resources\appicon.png" ForegroundFile="Resources\appiconfg.png" Color="#00000000" />
+    <MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#00000000" />
 
     <!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\appiconfg.png" Color="#00000000" BaseSize="128,128" />
+    <MauiSplashScreen Include="Resources\appiconfg.svg" Color="#00000000" BaseSize="128,128" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Ididit.WebView\Ididit.WebView.csproj" />
     <ProjectReference Include="..\Ididit\Ididit.csproj" />
   </ItemGroup>
+
+  <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>IdiditGoogleStore.keystore</AndroidSigningKeyStore>
+    <!--<AndroidSigningStorePass>password</AndroidSigningStorePass>-->
+    <AndroidSigningKeyAlias>IdiditGooglePlay</AndroidSigningKeyAlias>
+    <!--<AndroidSigningKeyPass>password</AndroidSigningKeyPass>-->
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+
+    <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+
+    <!-- Only needed when you have a need for entitlements -->
+    <!-- <CodesignEntitlement>Platforms/iOS/Entitlements.plist</CodesignEntitlement> -->
+
+    <CodesignKey>Apple Distribution: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>
+    <CodesignProvision>ididit.ios</CodesignProvision>
+
+    <ServerAddress>192.168.0.103</ServerAddress>
+    <ServerUser>Urban</ServerUser>
+    <TcpPort>58181</TcpPort>
+    <ArchiveOnBuild>true</ArchiveOnBuild>
+    <_DotNetRootRemoteDirectory>/Users/Urban/Library/Caches/Xamarin/XMA/SDKs/dotnet/</_DotNetRootRemoteDirectory>
+
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst')) and '$(Configuration)' == 'Release'">
+
+    <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
+
+    <!-- Only needed when you have a need for entitlements -->
+    <!--<CodesignEntitlement>Platforms/MacCatalyst/Entitlements.plist</CodesignEntitlement>-->
+
+    <!--<CodesignKey>Apple Distribution: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
+    <!--<CodesignProvision>ididit.macos</CodesignProvision>-->
+
+    <!--<CodesignKey>3rd Party Mac Developer Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
+    <!--<PackageSigningKey>3rd Party Mac Developer Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>-->
+
+    <CodesignKey>Developer ID Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>
+    <CodesignProvision>ididit.developer</CodesignProvision>
+    <PackageSigningKey>Developer ID Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>
+    
+    <EnableCodeSigning>True</EnableCodeSigning>
+    <EnablePackageSigning>true</EnablePackageSigning>
+
+    <ProvisionType>Manual</ProvisionType>
+    <!--<EnableAssemblyILStripping>false</EnableAssemblyILStripping>-->
+    <UseHardenedRuntime>true</UseHardenedRuntime>
+
+    <ServerAddress>192.168.0.103</ServerAddress>
+    <ServerUser>Urban</ServerUser>
+    <TcpPort>58181</TcpPort>
+    <ArchiveOnBuild>true</ArchiveOnBuild>
+    <_DotNetRootRemoteDirectory>/Users/Urban/Library/Caches/Xamarin/XMA/SDKs/dotnet/</_DotNetRootRemoteDirectory>
+    
+  </PropertyGroup>
 
 </Project>

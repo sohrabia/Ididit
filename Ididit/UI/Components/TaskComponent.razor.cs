@@ -1,4 +1,5 @@
-﻿using Ididit.Data;
+﻿using Blazorise.Localization;
+using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -9,6 +10,11 @@ namespace Ididit.UI.Components;
 
 public sealed partial class TaskComponent : IDisposable
 {
+    [Inject]
+    ITextLocalizer<Translations> Localizer { get; set; } = null!;
+
+    public static bool IsApple => OperatingSystem.IsIOS() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
+
     [Inject]
     IRepository Repository { get; set; } = null!;
 
@@ -117,11 +123,23 @@ public sealed partial class TaskComponent : IDisposable
         _showTime = !_showTime;
     }
 
+    async Task PriorityChangeEvent(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+            await PriorityChanged(Enum.Parse<Priority>(value));
+    }
+
     async Task PriorityChanged(Priority priority)
     {
         Task.Priority = priority;
 
         await Repository.UpdateTask(Task.Id);
+    }
+
+    async Task OnTaskKindChangeEvent(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+            await OnTaskKindChanged(Enum.Parse<TaskKind>(value));
     }
 
     async Task OnTaskKindChanged(TaskKind taskKind)

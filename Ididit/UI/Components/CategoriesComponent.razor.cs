@@ -1,4 +1,5 @@
-﻿using Ididit.Data;
+﻿using Blazorise.Localization;
+using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
@@ -10,7 +11,13 @@ namespace Ididit.UI.Components;
 public partial class CategoriesComponent
 {
     [Inject]
+    ITextLocalizer<Translations> Localizer { get; set; } = null!;
+
+    [Inject]
     IRepository Repository { get; set; } = null!;
+
+    [CascadingParameter]
+    Blazorise.Size Size { get; set; }
 
     [Parameter]
     public CategoryModel SelectedCategory { get; set; } = null!;

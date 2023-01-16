@@ -1,0 +1,63 @@
+{
+  "culture": "sl",
+  "translations": {
+    "About": "O",
+    "the procrastination friendly habit tracker": "odlašanju prijazni sledilnik navad",
+
+    "Show all tasks": "Prikaži vse naloge",
+    "Hide goals with no tasks": "Skrij cilje brez nalog",
+    "Hide goals with simple text": "Skrij cilje z enostavnim besedilom",
+    "Show all goals": "Prikaži vse cilje",
+    "Show categories in goal list": "Prikaži kategorije v seznamu ciljev",
+    "Add category to": "Dodaj kategorijo v",
+    "Categories": "Kategorije",
+    "Toggle all": "Preklopi vse",
+
+    "Add new category": "Dodaj novo kategorijo",
+
+    "Search": "Iskanje",
+    "Date filter": "Filter datuma",
+    "Today": "Danes",
+    "Hide completed tasks": "Skrij končane naloge",
+    "Show tasks with ratio over": "Prikaži naloge z razmerjem nad",
+    "Filter by priority": "Filtriraj po prioriteti",
+    "Filter by type": "Filtriraj po tipu",
+    "Sort by": "Razvrsti po",
+
+    "Add new goal": "Dodaj nov cilj",
+
+    "Add goal to": "Dodaj cilj v",
+
+    "Help": "Pomoč",
+
+    "Options": "Možnosti",
+    "Show debug controls": "Prikaži nadzorne elemente za razhroščevanje",
+    "Search, filter, sort": "Iskanje, filtriranje, razvrščanje",
+    "Tasks": "Naloge",
+
+    "Load examples": "Naloži primere",
+    "Delete all": "Izbriši vse",
+    "Reset settings": "Ponastavi nastavitve",
+    "Language": "Jezik",
+    "Size": "Velikost",
+    "Default": "Privzeto",
+    "Small": "Majhno",
+    "Large": "Veliko",
+    "Theme": "Tema",
+    "Background": "Ozadje",
+
+    "Type": "Tip",
+    "Note": "Opomba",
+    "Task": "Naloga",
+    "Repeating task": "Ponavljajoča naloga",
+    "Priority": "Prioriteta",
+    "None": "Nič",
+    "Very low": "Zelo nizko",
+    "Low": "Nizko",
+    "Medium": "Srednje",
+    "High": "Visoko",
+    "Very high": "Zelo visoko",
+    "Created at": "Ustvarjeno ob",
+    "Completed at": "Končano ob"
+  }
+}

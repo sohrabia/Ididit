@@ -70,7 +70,7 @@ public class TaskModel
     public TimeSpan DesiredInterval { get; set; }
 
     [JsonIgnore]
-    internal bool IsRepeating => DesiredInterval.Ticks > 0;
+    internal bool IsRepeating => TaskKind == TaskKind.RepeatingTask; // DesiredInterval.Ticks > 0;
 
     [JsonIgnore]
     internal bool IsCompletedTask => IsTask && !IsRepeating && IsDoneAtLeastOnce;
@@ -133,8 +133,15 @@ public class TaskModel
         LastTimeDoneAt = TimeList.Last();
 
         if (TimeList.Count == 1)
-            AverageInterval = TimeList.First() - CreatedAt;
+        {
+            if (TimeList.First() > CreatedAt)
+                AverageInterval = TimeList.First() - CreatedAt;
+            else
+                AverageInterval = CreatedAt - TimeList.First();
+        }
         else
+        {
             AverageInterval = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
+        }
     }
 }

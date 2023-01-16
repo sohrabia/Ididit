@@ -3,6 +3,6 @@
 bin
 obj
 *.user
-PublishProfiles
 credentials.json
 GoogleDriveService.GoogleClientSecrets.cs
+*.keystore

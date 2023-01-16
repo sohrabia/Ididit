@@ -14,9 +14,14 @@ public class SettingsModel
 
     public Blazorise.Size Size { get; set; }
 
-    public string Theme { get; set; } = string.Empty;
+    public string Culture { get; set; } = "en";
 
-    public bool ShowAllGoals { get; set; }
+    public string Theme { get; set; } = "default";
+
+    public string Background { get; set; } = "Default";
+
+    public bool ShowAllGoals { get; set; } = true;
+
     public bool ShowAllTasks { get; set; }
 
     public Dictionary<Priority, bool> ShowPriority { get; set; } = new()
@@ -37,6 +42,8 @@ public class SettingsModel
     };
 
     public Sort Sort { get; set; }
+
+    public Screen Screen { get; set; } = Screen.Main;
 
     public long ElapsedToDesiredRatioMin { get; set; }
 

@@ -4,10 +4,12 @@ namespace Ididit.Data;
 
 public enum TaskKind
 {
-    [Description("note")]
+    [Description("Note")]
     Note,
-    [Description("task")]
+
+    [Description("Task")]
     Task,
-    [Description("repeating task")]
+
+    [Description("Repeating task")]
     RepeatingTask
 }

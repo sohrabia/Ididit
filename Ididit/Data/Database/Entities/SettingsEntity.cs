@@ -20,10 +20,16 @@ internal class SettingsEntity
     public Blazorise.Size Size { get; set; }
 
     [IndexDbIndex]
-    public string Theme { get; set; } = string.Empty;
+    public string Culture { get; set; } = "en";
 
     [IndexDbIndex]
-    public bool ShowAllGoals { get; set; }
+    public string Theme { get; set; } = "default";
+
+    [IndexDbIndex]
+    public string Background { get; set; } = "Default";
+
+    [IndexDbIndex]
+    public bool ShowAllGoals { get; set; } = true;
 
     [IndexDbIndex]
     public bool ShowAllTasks { get; set; }
@@ -47,6 +53,9 @@ internal class SettingsEntity
 
     [IndexDbIndex]
     public Sort Sort { get; set; }
+
+    [IndexDbIndex]
+    public Screen Screen { get; set; } = Screen.Main;
 
     [IndexDbIndex]
     public long ElapsedToDesiredRatioMin { get; set; }
